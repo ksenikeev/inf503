@@ -16,7 +16,10 @@ public class Program {
     }
 
     public void run() {
+        User user = signIn();
+        // проверка на null
 
+        new Work(user).showMenu();
     }
 
     public User signIn() {

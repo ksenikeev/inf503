@@ -6,8 +6,19 @@ public class Work {
         this.user = user;
     }
 
-    public void showMenu() {
+    private void showAdminMenu() {
 
+    }
+
+    private void sowUserMenu() {
+
+    }
+
+    public void showMenu() {
+        switch (user.getRole()) {
+            case "ADMIN": showAdminMenu(); break;
+            case "USER": showUserMenu();
+        }
     }
 
 }
