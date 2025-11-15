@@ -7,6 +7,7 @@ public class Customer {
         this.name = name;
     }
 
-    public toString() {
+    public  String toString() {
         return "id=" + id + ", name=" + name;
+    }
 }
