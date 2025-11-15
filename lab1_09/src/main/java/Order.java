@@ -1,16 +1,24 @@
 public class Order {
     /* Максимальное кол-во товаров в заказе */
     public int CAPACITY = 10;
-    public int productsCount = 0;
+    private int productsCount = 0;
 
     public int number;
     public Customer customer;
     public String deliveryPoint;
     public String orderDate;
     public double summ;
-    public Product[] products = new Product[CAPACITY];
+    private Product[] products = new Product[CAPACITY];
     /* Формируется, Оплачен, Закрыт */
     public String status;
+
+    public Product[] getProducts() {
+        Product[] result = new Product[productsCount];
+        for (int i = 0; i < productsCount; ++i) {
+            result[i] = products[i];
+        }
+        return result;
+    }
 
     public Order(int number, Customer customer, String deliveryPoint, String orderDate) {
         this.number = number;
