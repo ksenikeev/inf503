@@ -1,6 +1,6 @@
 package ru.itis.inf503.game;
 
-public class Animal {
+public abstract class Animal {
     public String name;
     protected int x;
     protected int y;
@@ -16,9 +16,7 @@ public class Animal {
         this.y = y;
     }
 
-    public void move() {
-
-    }
+    public abstract void move();
 
     // префикс get имя члена класса с заглавной буквы
     public int getX() {
