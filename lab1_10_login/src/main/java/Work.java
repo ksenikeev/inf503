@@ -17,7 +17,7 @@ public class Work {
     public void showMenu() {
         switch (user.getRole()) {
             case "ADMIN": showAdminMenu(); break;
-            case "USER": showUserMenu();
+            case "USER": //showUserMenu();
         }
     }
 

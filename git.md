@@ -1,51 +1,140 @@
-# Работа с git
+# GIT
 
-1. Создадим репозиторий на удаленном сервере (github.com)
+## Система контроля версий
 
-https://github.com/ksenikeev/informatics.git
+https://git-scm.com/book/ru/v2
 
-git@github.com:ksenikeev/informatics.git
+https://github.com/progit/progit/blob/master/ru/
 
+Downloads: https://git-scm.com/downloads
+
+Для работы с удаленным репозиторием удобно использовать протокол ssh, для этого необходимо сгенерировать ключи шифрования
 ```
-…or create a new repository on the command line
-echo "# informatics" >> README.md
+ssh-keygen
+```
+Используйте директорию, которую предлагает утилита, имя ключа можно задать своё.
+
+После создания ключей приватный надо хранить в секрете, публичный предназначен для аутентификации — его загружают на удаленные репозитории.
+
+- Проверяем:
+```
+git --version
+```
+
+- настраиваем параметры:
+```
+git config param_name param_value
+```
+
+- в частности:
+```
+git config user.name ваше_имя
+git config user.email электронная_почта
+```  
+
+- создаем локальный репозиторий в текущей директории:
+```
 git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/ksenikeev/informatics.git
-git push -u origin main
 ```
 
+- состояние git репозитория
 ```
-…or push an existing repository from the command line
-git remote add origin https://github.com/ksenikeev/informatics.git
-git branch -M main
-git push -u origin main
+git status
 ```
 
-2. Создаем локальный репозиторий
+- добавляем файл в список индексируемых:
+```
+git add filename
+```
 
-VCS -> Enable version control ...
+- добавляем в список индексируемых все java файлы из директорий, вложенных в lab08
+```
+git add lab08/**/*.java
+```
 
-3. Добавление файла в систему контроля версий
+- проверка статуса локального репозитория:
+```
+git status
+```
 
-git add file
+- коммит (фиксируем изменения индексируемых файлов):
+```
+git commit -m "commit message"
+```
 
-либо в контекстном меню: git -> add
+- коммит всех отслеживаемых файлов
+```
+git commit -a -m "commit message"
+```
 
-4. Фиксация состояния - COMMIT
+- добавляем удалённый репозиторий (с использованием протокола ssh)
+```
+git remote add origin git@github.com:ksenikeev/inf403.git
+```
 
-git commit -m "first commit"
+- отправляем изменения в удалённый репозиторий:
+```
+git push origin master
+```
 
-5. Подключение удаленного репозитория
+- Локальная ветка по умолчанию - master
 
-git remote add origin https://github.com/ksenikeev/informatics.git
+- Внешний репозиторий обычно - origin
 
-Git -> Manage remotes ...
+- подгрузка изменений из внешнего репозитория:
+```
+git pull origin master
+```
 
-6. Отправка коммита на удаленный репозиторий (PUSH)
+## Игнорирование файлов системой git
+- Просмотр ингорируемых файлов
+```
+git status --ignored
+```
 
-git push -u origin main
+- Файл .gitignored
+``` 
+# игнорируем себя
+.gitignore
+# конфигурация IDE
+.idea/
+# все файлы *.class
+*.class
+# все файлы внутри каталога target
+target/**
+#
+.DS_Store
+Thumbs.db
+```
 
+## Работа с ветками
 
+Создание новой ветки:
+```
+git branch имя_ветки
+``` 
+
+Переключение на ветку:
+```
+git checkout имя_ветки
+```
+
+### Слияние веток
+Например, сливаем изменения в ветке `test` в ветку `master`:
+```
+git checkout master # переключаемся на ветку в которую хотим влить изменения
+git merge test
+```
+
+## Конфликты
+
+Конфликт возникает при попытке объеденить ветки, содержащие разные изменения одного и того же файла
+
+Решение: 
+- выбрать один из двух вариантов (отбросить изменения в другом)
+- вручную привести файлы к одному состоянию
+
+Инструмент для разрешения конфликтов:
+```
+git mergetool
+```
