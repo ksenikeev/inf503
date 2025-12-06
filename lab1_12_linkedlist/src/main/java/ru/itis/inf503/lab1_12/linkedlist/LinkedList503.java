@@ -9,6 +9,10 @@ public class LinkedList503 {
         public Node(int value) {
             this.value = value;
         }
+
+        public String toString() {
+            return String.valueOf(this.value);
+        }
     }
 
     private Node head;
@@ -85,7 +89,7 @@ public class LinkedList503 {
             Node previus = head;
             Node current = head;
             Node next = head.next;
-            for (int j = 0; j < size - 1 - i; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
                 if (compare(current, next) > 0) {
                     swap(previus, current, next);
                     if (current == head) head = next;
