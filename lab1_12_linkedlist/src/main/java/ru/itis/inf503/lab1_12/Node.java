@@ -7,4 +7,10 @@ public class Node {
     public Node(int value) {
         this.value = value;
     }
+
+    public static void main(String[] args) {
+        Node node = new Node(0);
+        System.out.println(node.toString());
+    }
+
 }
