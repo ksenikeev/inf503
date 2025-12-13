@@ -6,9 +6,9 @@ public interface IntCollection {
 
     int size();
 
-    String[] path(int value);
+    String[] path(int value) throws NotFoundException;
 
-    int max();
+    int max() throws EmptyTreeException;
 
-    int min();
+    int min() throws EmptyTreeException;
 }

@@ -42,30 +42,22 @@ public class BTree implements IntCollection {
         size++;
     }
 
-    private void add(int value, Node node){
+    private void add(int value, Node node) {
         if (value <= node.value) {
             if (node.left == null) { // добавляем в левое поддерево
                 Node v = new Node(value);
                 node.left = v;
                 return;
-            } else if (value < node.left.value){
-                add(value, node.left);
             } else {
-                Node v = new Node(value);
-                v.left = node.left;
-                node.left = v;
+                add(value, node.left);
             }
         } else {
             if (node.right == null) { // добавляем в правое поддерево
                 Node v = new Node(value);
                 node.right = v;
                 return;
-            } else if (value >= node.right.value){
-                add(value, node.right);
             } else {
-                Node v = new Node(value);
-                v.right = node.right;
-                node.right = v;
+                add(value, node.right);
             }
         }
     }
@@ -74,5 +66,15 @@ public class BTree implements IntCollection {
         return size;
     }
 
+    public int max() throws EmptyTreeException {
+        return 0;
+    }
 
+    public int min() throws EmptyTreeException {
+        return 0;
+    }
+
+    public String[] path(int value) throws NotFoundException {
+        return null;
+    }
 }
