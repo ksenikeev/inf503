@@ -24,9 +24,16 @@ public class LinkedList503 {
     }
 
     // Получить значение по индексу
-    public int get(int index) {
+    public int get(int index) throws NoNoNo13Exception, IndexOutOfBoundsException {
+        if (index == 13) {
+            // нормальная работа дальше не возможна - бросаем исключение
+            throw new NoNoNo13Exception("13 не допустим!");
+        }
 
-
+        if (index < 0 || index >= size) {
+            // нормальная работа дальше не возможна - бросаем исключение
+            throw new IndexOutOfBoundsException(index + " не допустим!");
+        }
 
         Node current = this.head;
         for (int i = 0; i < index; i++) {

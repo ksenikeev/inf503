@@ -11,9 +11,18 @@ public class TestLinkedList503 {
         list.add(-3);
         list.add(8);
 
-        System.out.println("размер списка = " + list.size());
-        System.out.println(list);
-        list.sort();
-        System.out.println(list);
+        try {
+            System.out.println(list.get(13));
+            System.out.println("aaaaa");
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+
+            System.out.println("Вы указали неверный индекс, повторите ввод!");
+        } catch (NoNoNo13Exception e) {
+            System.err.println("Только не 13!!!!");
+            System.exit(13);
+        }
+
+        System.out.println("продолжаем работу");
     }
 }
