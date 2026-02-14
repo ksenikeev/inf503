@@ -31,7 +31,7 @@ public class BTree implements IntCollection {
             return "";
         }
 
-        return node.value + print(node.left) + print(node.right)+ ", ";
+        return node.value + "," + print(node.left) + print(node.right);
     }
 
     public void add(int value) {
@@ -75,6 +75,26 @@ public class BTree implements IntCollection {
     }
 
     public String[] path(int value) throws NotFoundException {
+        return route(root, value, "");
+    }
+
+    private String[] route(Node node, int value, String direction) {
+
+
         return null;
+    }
+
+    public void printAsTree() {
+        int countLeftNodes = cntLN(root);
+
+        System.out.println(countLeftNodes);
+    }
+
+    private int cntLN(Node node) {
+        if (node != null) {
+            return 1 + cntLN(node.left);
+        } else {
+            return 0;
+        }
     }
 }
