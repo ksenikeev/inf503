@@ -57,4 +57,12 @@ package ru.itis.inf503.lab2_3;
         public void setWorkTimeEnd(String workTimeEnd) {
             this.workTimeEnd = workTimeEnd;
         }
+
+        public String toString() {
+            return type.getName() + ": " + number + ", Маршрут " +
+                    routeNumber + ", Начало работы: " +
+                    workTimeBegin + ", Конец работы: " +
+                    workTimeEnd;
+        }
+
     }
