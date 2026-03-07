@@ -12,7 +12,11 @@ public interface Set503gen<T> {
     void clear();
     Object[] toArray();
     <R>List<R> collect(Function<T, R> function);
+
+    List<T> sort(Comparator<T> comparator);
+
 }
+
 
 /*
 

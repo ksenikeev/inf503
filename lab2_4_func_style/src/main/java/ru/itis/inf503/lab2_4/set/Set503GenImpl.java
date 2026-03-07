@@ -1,9 +1,7 @@
 package ru.itis.inf503.lab2_4.set;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.function.Function;
 
 public class Set503GenImpl<T> implements Set503gen<T> {
@@ -100,6 +98,13 @@ public class Set503GenImpl<T> implements Set503gen<T> {
         }
         return result;
     }
+    public List<T> sort(Comparator<T> comparator){
+        T[] massivT = (T[])toArray();
+        Arrays.sort(massivT, comparator);
+        List<T> result = new ArrayList<>(List.of(massivT));
+        return result;
+    }
+
 
 }
 
