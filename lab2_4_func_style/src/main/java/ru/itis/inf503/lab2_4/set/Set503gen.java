@@ -14,6 +14,7 @@ public interface Set503gen<T> {
     <R>List<R> collect(Function<T, R> function);
 
     List<T> sort(Comparator<T> comparator);
+    Set503gen<T> filter(Predicate<T> predicate);
 
 }
 

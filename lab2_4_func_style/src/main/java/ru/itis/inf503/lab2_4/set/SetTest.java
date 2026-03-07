@@ -18,7 +18,6 @@ public class SetTest {
             }
         });
         List<Integer> list1 = set.sort(new Comparator<Integer>() {
-            @Override
             public int compare(Integer o1, Integer o2) {
                 return o1 - o2;
             }
@@ -29,5 +28,17 @@ public class SetTest {
                 System.out.println(s);
             }
         });
+
+        Set503gen<Integer> set1 = set.filter(new Predicate<Integer>() {
+            public boolean test(Integer n) {
+                // Будем оставлять только четные
+                return n % 2 == 0;
+            }
+        });
+
+        for (Integer i : (Integer[])set1.toArray()) {
+            System.out.println(i);
+        }
+
     }
 }

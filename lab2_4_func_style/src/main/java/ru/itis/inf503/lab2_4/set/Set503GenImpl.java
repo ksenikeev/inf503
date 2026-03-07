@@ -3,6 +3,7 @@ package ru.itis.inf503.lab2_4.set;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Set503GenImpl<T> implements Set503gen<T> {
     private Object[] set;
@@ -102,6 +103,15 @@ public class Set503GenImpl<T> implements Set503gen<T> {
         T[] massivT = (T[])toArray();
         Arrays.sort(massivT, comparator);
         List<T> result = new ArrayList<>(List.of(massivT));
+        return result;
+    }
+
+    public Set503gen<T> filter(Predicate<T> predicate){
+        Set503gen<T> result = new Set503GenImpl<T>();
+        for (int i = 0; i < size; i++) {
+            if (predicate.test((T)set[i]))
+                result.add((T) set[i]);
+        }
         return result;
     }
 
