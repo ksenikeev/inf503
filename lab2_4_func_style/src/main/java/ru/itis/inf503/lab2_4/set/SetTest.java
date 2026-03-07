@@ -29,6 +29,8 @@ public class SetTest {
             }
         });
 
+        System.out.println("Четные:");
+
         Set503gen<Integer> set1 = set.filter(new Predicate<Integer>() {
             public boolean test(Integer n) {
                 // Будем оставлять только четные
@@ -36,9 +38,18 @@ public class SetTest {
             }
         });
 
-        for (Integer i : (Integer[])set1.toArray()) {
-            System.out.println(i);
-        }
+        ///for (Object i : set1.toArray()) {
+        //    System.out.println(i);
+        //}
+
+        Integer i = 0;
+
+        set1.forEach(new Consumer<Integer>() {
+            public void accept(Integer integer) {
+                System.out.println(integer + i);
+            }
+        });
+
 
     }
 }

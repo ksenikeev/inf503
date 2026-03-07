@@ -2,6 +2,7 @@ package ru.itis.inf503.lab2_4.set;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -114,6 +115,13 @@ public class Set503GenImpl<T> implements Set503gen<T> {
         }
         return result;
     }
+    public void forEach(Consumer<T> consumer) {
+        for (int i = 0; i < size; i++) {
+            consumer.accept((T)set[i]);
+        }
+    }
+
+
 
 
 }

@@ -15,6 +15,7 @@ public interface Set503gen<T> {
 
     List<T> sort(Comparator<T> comparator);
     Set503gen<T> filter(Predicate<T> predicate);
+    void forEach(Consumer<T> consumer);
 
 }
 
