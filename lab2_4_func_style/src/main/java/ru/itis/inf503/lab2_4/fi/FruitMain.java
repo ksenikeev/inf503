@@ -32,5 +32,7 @@ public class FruitMain {
             }
         });
 
+
+        fruits.forEach(f -> System.out.println(f.getName() + " : " + f.getPrice()));
     }
 }

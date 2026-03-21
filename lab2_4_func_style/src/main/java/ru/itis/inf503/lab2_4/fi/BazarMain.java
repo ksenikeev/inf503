@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 public class BazarMain {
     public static void main(String[] args) {
         Bazar bazar = new Bazar();
+
         List<Fruit> fruits = bazar.generateProductions(new FruitGenerator(), 10);
 
         fruits.forEach(new Consumer<Fruit>() {
