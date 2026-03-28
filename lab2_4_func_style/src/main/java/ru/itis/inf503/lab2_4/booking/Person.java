@@ -31,6 +31,18 @@ public class Person {
         this.fromcity = fromcity;
     }
 
+    public Integer getGroup() {
+        Integer birth = Integer.parseInt(birthdate.substring(0, 4));
+        //1 - 0-14, 2 - 15-18, 3 - 19-25, 4 - 26-35, 5 - 36-45, 6 - 45-...
+        // 2008
+        if (birth >= 2008) return 1;
+        if (birth >= 2004) return 2;
+        if (birth >= 1997) return 3;
+        if (birth >= 1987) return 4;
+        if (birth >= 1977) return 5;
+        return 6;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
