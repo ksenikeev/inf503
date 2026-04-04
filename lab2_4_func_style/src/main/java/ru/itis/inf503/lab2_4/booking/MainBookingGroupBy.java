@@ -32,6 +32,7 @@ public class MainBookingGroupBy {
 
         data.getBookings().stream()
                 .filter(b -> b.getPerson().getFromcity() != null)
+                // группируем брони по названию гостиницы -> Map<String, List<Booking>>
                 .collect(Collectors.groupingBy(
                         b -> b.getHotel().getName()
                 ))
