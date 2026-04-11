@@ -19,8 +19,9 @@ public class TestUTFFileReader {
                     // символ состоит из 2 байт
                     // читаем 2-й байт
                     int r2 = is.read();
-                    int c = (r << 8) | r2;
-                    System.out.print(c);
+                    //UTF16 = (UInt16(byte1 и $1F) shl 6) или UInt16(byte2 и $3F)
+                    int c = ((r & 0x1F) << 6) | (r2 & 0x3F);
+                    System.out.print((char)c);
                 }
             }
 

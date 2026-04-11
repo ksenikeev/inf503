@@ -118,9 +118,6 @@ public abstract class OutputStream implements Closeable, Flushable {
 
 - write (int, byte[])
 
-# ObjectInputStream / ObjectOutputStream
-
-
 # Потоки `Writer` и `Reader`
 
 Потоки `Writer` и `Reader` функционально схожи с потоками `InputStream` и `OutputStream`,
@@ -171,4 +168,27 @@ BufferedWriter writer = new BufferedWriter(
 try (InputStream is = new FileInputStream(in)) {
     //....
 }
+```
+
+## Сериализация объектов
+
+ObjectInputStream / ObjectOutputStream
+
+```java
+try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+            oos.writeObject(animal1);
+            savedData = bos.toByteArray();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (ByteArrayInputStream bis = new ByteArrayInputStream(savedData);
+                ObjectInputStream ois = new ObjectInputStream(bis)) {
+            Animal animal2 = (Animal) ois.readObject();
+            System.out.println(animal2);
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
 ```
