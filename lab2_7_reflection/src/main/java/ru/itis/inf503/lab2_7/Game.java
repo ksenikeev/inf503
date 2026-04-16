@@ -23,19 +23,19 @@ public class Game implements Serializable {
         this.power = power;
     }
 
-    public Double getxPosition() {
+    public Double getXPosition() {
         return xPosition;
     }
 
-    public void setxPosition(Double xPosition) {
+    public void setXPosition(Double xPosition) {
         this.xPosition = xPosition;
     }
 
-    public Double getyPosition() {
+    public Double getYPosition() {
         return yPosition;
     }
 
-    public void setyPosition(Double yPosition) {
+    public void setYPosition(Double yPosition) {
         this.yPosition = yPosition;
     }
 

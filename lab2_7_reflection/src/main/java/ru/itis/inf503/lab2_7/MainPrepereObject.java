@@ -1,10 +1,11 @@
 package ru.itis.inf503.lab2_7;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class MainPrepereObject {
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
         Game game = new Game("Gamer");
 
@@ -25,10 +26,27 @@ public class MainPrepereObject {
         System.out.println("3. -------------------------------------");
         Field[] allFields = clazz.getDeclaredFields();
         for (Field field : allFields) {
+            // Разрешаем сами себе доступ к значениям приватных членов
             field.setAccessible(true);
             System.out.println(field.getType() + " : " + field.getName()
                     + " = " + field.get(game) );
         }
+
+        // 3' получаем значения членов класса через геттеры
+        System.out.println("3'. -------------------------------------");
+        allFields = clazz.getDeclaredFields();
+        for (Field field : allFields) {
+            // 1) ищем для члена класса его геттер
+            String getterName = "get" + field.getName().substring(0,1).toUpperCase()
+                    + field.getName().substring(1);
+            Method getter = clazz.getMethod(getterName);
+            // 2) вызываем геттер, получаем значение
+            Object value  = getter.invoke(game);
+
+            System.out.println(field.getType() + " : " + field.getName()
+                    + " = " + value );
+        }
+
 
         // 4. Предки
         System.out.println("4. -------------------------------------");
