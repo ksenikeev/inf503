@@ -3,10 +3,10 @@ package ru.itis.inf503.lab2_7;
 import java.io.Serializable;
 
 public class Game implements Serializable {
-    private Double xPosition;
-    private Double yPosition;
-    private Integer level;
-    private Integer power;
+    private Double xPosition = 0.;
+    private Double yPosition = 0.;
+    private Integer level = 0;
+    private Integer power = 100;
     public String gamerName;
 
     public Game() {
@@ -61,6 +61,10 @@ public class Game implements Serializable {
 
     public void setGamerName(String gamerName) {
         this.gamerName = gamerName;
+    }
+
+    private Double getRadiusVector() {
+        return Math.sqrt(xPosition * xPosition + yPosition * yPosition);
     }
 
     @Override
