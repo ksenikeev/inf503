@@ -2,7 +2,7 @@ package ru.itis.inf503.lab2_10;
 
 public class MathUtil {
     public static int sum(int a, int b) {
-        return a + b;
+        return a - b;
     }
 
     public static int compare(int a, int b) {
