@@ -1,0 +1,105 @@
+# Модульное тестирование
+## Тестирование с помощью фреймворка JUnit
+
+https://junit.org/junit5/docs/current/user-guide/
+
+- нужна библиотека
+```
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.12.2</version>
+        <scope>test</scope>
+    </dependency>
+```
+- Подготовка Test Case
+- Разработка методов, тестирующих модули программы
+- Сопоставление результатов тестирования с заранее определенным ответом (`Assert`)
+
+Виды проверок:
+Assertion. - утверждается, что
+- assertTrue - выражение истинно
+- assertFalse
+- assertEquals(expected, actual) - объект эквивалентен шаблону
+- assertNotEquals
+- assertArrayEquals - массив эквивалентен шаблону
+- assertSame - два объекта ссылаются на один и тот же
+- assertNotSame
+- fail – явное утверждение о провале теста.
+- assertThrows(Class<T> expectedType, Executable executable)  - проверка генерации исключения с указанным типом или его подтипом
+- assertThrowsExactly - проверка генерации исключения в точности с типом
+
+
+```
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
+import java.util.Date;
+
+public class Util {
+
+    public static Date cropTimeInDate(Date date) {
+        LocalDate localDate =
+                LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
+        return Date.from(
+                localDate.atStartOfDay(ZoneId.systemDefault())
+                        .toInstant());
+    }
+
+}
+```
+
+
+```
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class TestUtil {
+
+    private static Date date;
+    private static Date exceptedDate;
+
+    @BeforeAll
+    public static void setUpBeforeClass() {
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .parse("2023-04-18 10:58:45");
+
+            exceptedDate = new SimpleDateFormat("yyyy-MM-dd")
+                    .parse("2023-04-18");
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void testCropTimeInDate() {
+        Assert.assertEquals(exceptedDate,
+                Util.cropTimeInDate(date));
+    }
+
+}
+```
+
+1. Протестировать работоспособность программы соединяющей 2 файла (текстовый, бинарный)
+   - итог: файл, 1 часть которого совпадает с 1-м файлом, 2-я часть - со 2-м файлом
+   - тестируете итоговый размер = сумма размеров 2-х файлов
+   - заранее готовите 3 файла, считываете 1-й файл в массив, читаете часть 3-го файла и сравниваете два массива
+
+2. Протестировать один из алгоритмов сортировки
+
+3. Написать метод, считывающий файл JSON (имя файла передается через аргумент),
+ и определяющий корректность расставленных скобок {{}}, [] возвращает 0,
+ если все правильно, или позицию проблемы (начиная с 1)
+Метод должен бросать исключения
+NullPointer если передали пустое имя файла
+Исключение, если файл не найден,
+Исключение, если файл не текстовый (проверка на буквы, цифры, знаки препинания)
+
+метод 3 задания протестировать на все исключения и на корректность работы
