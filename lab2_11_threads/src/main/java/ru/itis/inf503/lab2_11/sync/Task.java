@@ -46,7 +46,7 @@ public class Task implements Runnable {
     private void filePrint() throws IOException {
 
         synchronized (mutex) {
-            //synchronized (Task.class) {
+            //synchronized (Task.class) { // плохо, т.к. может заблокировать поток, который выводит в консоль
             // этим блоком сможет управлять только один поток
             // захватываем mutex
             for (int i = 0; i < message.length(); ++i) {
